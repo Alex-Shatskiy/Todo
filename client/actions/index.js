@@ -1,0 +1,86 @@
+import request from 'superagent'
+
+export const getTodoList =(todo) =>{
+    return{
+      type: 'GET_TODO',
+      todo: todo
+      }
+  }
+
+export const addTodo =(todo)=>{
+  return{
+    type:'ADD_TODO',
+    todo:todo
+  }
+}
+
+
+export const checkTodo =(todos)=>{
+  return{
+    type:'CHECK_TODO',
+    todo:todos
+  }
+}
+
+export const delTodo=(todo)=>{
+  return{
+    type:"DEL_TODO",
+    todo:todo
+  }
+}
+
+export function getTodos(){
+    return dispatch =>{
+      return request
+        .get('/api/v1/todo')
+        .then(res =>{
+          return dispatch(getTodoList(res.body))
+        })
+        .catch(err => {
+          console.log(err)
+       })
+    }
+  }
+
+  export function postTodo(todo){
+    const todoList ={todo: todo, completed: false}
+    return dispatch=>{
+      return request
+      .post('/api/v1/todo')
+      .send(todoList)
+      .then(res=>{
+        return dispatch(addTodo(todoList))
+      })
+      .catch(err => {
+        console.log(err)
+     })
+    }
+  }
+
+  export function updateTodo(todos){
+    return dispatch=>{
+      return request
+      .patch('/api/v1/todo')
+      .send(todos)
+      .then((res) => {
+        return dispatch(getTodos())
+      })
+      .catch(err => {
+        console.log(err)
+     })
+    }
+  }
+
+  export function deleteTodo(todo){
+    return dispatch=>{
+      return request
+        .del('/api/v1/todo')
+        .send(todo)
+        .then(res=>{
+        return dispatch(delTodo(todo))
+      })
+      .catch(err => {
+        console.log(err)
+     })
+    }
+  }
