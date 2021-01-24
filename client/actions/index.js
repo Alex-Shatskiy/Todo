@@ -105,3 +105,14 @@ export function getTodos(){
      })
     }
   }
+
+  export function updateTodoTask(todo){
+    return dispatch=>{
+      return request
+      .patch('/api/v1/todo/update')
+      .send(todo)
+      .catch(err => {
+        console.log(err)
+     })
+    }
+  }

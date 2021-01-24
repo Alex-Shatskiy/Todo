@@ -50,5 +50,15 @@ router.delete('/delete', (req,res) => {
       })
 })
 
+router.patch('/update', (req,res) => {
+    return db.updateTodoTask(req.body)
+     .then(todo =>{
+         res.json(todo)
+     })
+     .catch((err) => {
+         console.log(err);
+         res.status(500).json({ message: 'Oh no delete error, todo not deleted' });
+       })
+ })
 
 module.exports = router

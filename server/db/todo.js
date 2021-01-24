@@ -24,10 +24,17 @@ function deleteComplted(todo, db = connection){
     .where('completed', true )
     .delete(todo)
 }
+
+function updateTodoTask(todo, db = connection){
+    return db('todo')
+    .where('id', todo.id )
+    .update({todo: todo.todo})
+}
 module.exports={
     getAllTodos,
     addTodo,
     checkTodo,
     deleteTodo,
-    deleteComplted  
+    deleteComplted,
+    updateTodoTask
 }
