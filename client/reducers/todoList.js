@@ -23,7 +23,15 @@ const reducer = (state = [], action) =>{
           let deleteTodo = newState.filter(todos =>{
             return todos.todo != action.todo.todo
           })
-          return deleteTodo
+
+        case 'DEL_ALL_TODO':
+          newState = [...state]
+          let deleteAllTodo = newState.filter(todos =>{
+            return todos.completed == action.todo.filter(complete =>{
+              return complete == true
+            })
+          })
+          return deleteAllTodo
 
       default:
           return state

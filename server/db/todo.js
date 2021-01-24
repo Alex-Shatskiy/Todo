@@ -18,9 +18,16 @@ function deleteTodo(todo, db = connection){
     .where('todo', todo.todo )
     .delete(todo)
 }
+function deleteComplted(todo, db = connection){
+    console.log(todo)
+    return db('todo')
+    .where('completed', true )
+    .delete(todo)
+}
 module.exports={
     getAllTodos,
     addTodo,
     checkTodo,
-    deleteTodo
+    deleteTodo,
+    deleteComplted  
 }

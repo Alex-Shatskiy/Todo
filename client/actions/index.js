@@ -29,6 +29,13 @@ export const delTodo=(todo)=>{
   }
 }
 
+export const delAllTodo=(todo)=>{
+  return{
+    type:"DEL_ALL_TODO",
+    todo:todo
+  }
+}
+
 export function getTodos(){
     return dispatch =>{
       return request
@@ -78,6 +85,20 @@ export function getTodos(){
         .send(todo)
         .then(res=>{
         return dispatch(delTodo(todo))
+      })
+      .catch(err => {
+        console.log(err)
+     })
+    }
+  }
+
+  export function deleteAllComplted(completed){
+    return dispatch=>{
+      return request
+        .del('/api/v1/todo/delete')
+        .send(completed)
+        .then(res=>{
+        return dispatch(delAllTodo(completed))
       })
       .catch(err => {
         console.log(err)

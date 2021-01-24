@@ -39,5 +39,16 @@ router.delete('/', (req,res) => {
       })
 })
 
+router.delete('/delete', (req,res) => {
+   return db.deleteComplted(req.body)
+    .then(todo =>{
+        res.json(todo)
+    })
+    .catch((err) => {
+        console.log(err);
+        res.status(500).json({ message: 'Oh no delete error, todo not deleted' });
+      })
+})
+
 
 module.exports = router
