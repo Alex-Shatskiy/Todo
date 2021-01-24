@@ -9,7 +9,7 @@ function addTodo(todo, db = connection){
 }
 function checkTodo(todo, db = connection){
     return db('todo')
-    .where('id', todo.id )
+    .where('todo', todo.todo )
     .update({completed: todo.completed})
 }
 function deleteTodo(todo, db = connection){

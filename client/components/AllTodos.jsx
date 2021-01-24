@@ -4,16 +4,17 @@ import { connect } from 'react-redux'
 import EachTodo from './EachTodo'
 
 function AllTodos(props){
-    console.log(props.match.params)
       const pageStatus = ()=>{
-         if(props.match.params.status == 'completed'){
+        let urlStatus = props.match.params.status
+
+         if(urlStatus == 'completed'){
           return props.todoList.filter(todo=>todo.completed == 1)
-         }else if(props.match.params.status == 'active'){
-          console.log("props.ya")
+         }else if(urlStatus == 'active'){
           return props.todoList.filter(todo=>todo.completed == 0)
          }else{
            return props.todoList
          }
+         
       }
       return (
         <>

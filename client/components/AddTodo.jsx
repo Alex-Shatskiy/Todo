@@ -6,31 +6,24 @@ class AddTodo extends React.Component{
   state = {
     todo: ''
   }
-
   handleChange = event => {
     this.setState({
       todo: event.target.value,
     })
-    this.state.todo
   }
 
-  handleSubmit = () => {
-    this.props.dispatch(postTodo(this.state.todo))
-    this.setState({
-      todo: ''
-    })
-  }
-  handleKeyDown = function (e, cb) {
+  handleSubmit = function (e) {
     if (e.key === 'Enter') {
       e.preventDefault();
-      this.handleSubmit()
+      this.props.dispatch(postTodo(this.state.todo))
+      this.setState({ todo:''})
     }
   };
   render(){
     return (
       <>
-      <form onKeyDown={e => this.handleKeyDown(e)} >
-        <input className="new-todo"  onChange={this.handleChange} placeholder="What needs to be done?" autoFocus={true} />
+      <form onKeyDown={e => this.handleSubmit(e)} >
+        <input className="new-todo" onChange={this.handleChange} placeholder="What needs to be done?" autoFocus={true} />
       </form>
       </>
       )
