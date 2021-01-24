@@ -1,9 +1,11 @@
 import React from 'react'
 import AddTodo from './AddTodo'
 import { connect } from 'react-redux'
+import {Route, Switch} from 'react-router-dom'
 
 import {getTodos,checkCompleted, deleteTodo}from '../actions'
 import AllTodos from './AllTodos'
+import Footer from './Footer'
 
 class App extends React.Component {
   componentDidMount(){
@@ -18,9 +20,12 @@ class App extends React.Component {
           <AddTodo />
         </header>
         <section className="main">
-          <AllTodos/>
+            <Route exact path='/' component={AllTodos}/>
+            <Route exact path='/:status' component={AllTodos}/>
         </section>
-        <footer className="footer"></footer>
+        <footer className="footer">
+          <Footer/>
+        </footer>
       </>
     )
   }
