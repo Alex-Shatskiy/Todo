@@ -16,7 +16,7 @@ class AddTodo extends React.Component{
     if (e.key === 'Enter') {
       e.preventDefault();
       this.props.dispatch(postTodo(this.state.todo))
-      this.setState({ todo:''})
+      this.setState({todo:''})
     }
   };
   render(){

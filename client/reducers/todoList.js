@@ -23,6 +23,7 @@ const reducer = (state = [], action) =>{
           let deleteTodo = newState.filter(todos =>{
             return todos.todo != action.todo.todo
           })
+          return deleteTodo
 
         case 'DEL_ALL_TODO':
           newState = [...state]
@@ -31,7 +32,13 @@ const reducer = (state = [], action) =>{
               return complete == true
             })
           })
-          return deleteAllTodo
+        case 'UPDATE_TODO':
+          newState =[...state]
+          let changeTodo = newState.filter(todos =>{
+            return todos.id == action.todo.id
+          })
+          changeTodo.todo = action.todo
+          return newState
 
       default:
           return state

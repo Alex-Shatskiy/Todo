@@ -36,6 +36,14 @@ export const delAllTodo=(todo)=>{
   }
 }
 
+
+export const changeTodo=(todo)=>{
+  return{
+    type: "UPDATE_TODO",
+    todo:todo
+  }
+}
+
 export function getTodos(){
     return dispatch =>{
       return request
@@ -111,6 +119,9 @@ export function getTodos(){
       return request
       .patch('/api/v1/todo/update')
       .send(todo)
+      .then(res =>{
+        return dispatch(changeTodo(todo))
+      })
       .catch(err => {
         console.log(err)
      })

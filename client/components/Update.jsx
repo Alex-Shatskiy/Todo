@@ -28,7 +28,7 @@ render(){
     return (
       <>
       <form onKeyDown={e => this.handleSubmit(e)} >
-        <input className="new-todo" onChange={this.handleChange} placeholder={this.props.todo} autoFocus={true} />
+        <input className="new-todo" onChange={this.handleChange} placeholder={this.props.todo} onDoubleClick={()=> this.props.enter()} autoFocus={true} />
       </form>
       </>
       )

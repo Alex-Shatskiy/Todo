@@ -10,11 +10,7 @@ function EachTodo(props){
 
   const updateTodoList =(todo)=>{
     let check = todo
-    if(check.completed == true){
-      check.completed = check.completed = 0
-    }else{ 
-      check.completed = check.completed = 1
-    }
+    check.completed = check.completed ? 0:1
     props.dispatch(updateTodo(check))
   }
 
@@ -31,7 +27,10 @@ function EachTodo(props){
       <li className={props.todo.completed ? 'completed' : ''}>
         <div className='view'>
          <input className="toggle" type="checkbox" checked={props.todo.completed}  onChange={() => updateTodoList(props.todo)}/>
-         {!doubleClickEdit? <label onDoubleClick={()=> onDoubleClick( )}>{props.todo.todo}</label> : <Update todo={props.todo.todo} fullTodo={props.todo} enter={onDoubleClick}/> }
+         {
+         !doubleClickEdit? <label onDoubleClick={()=> onDoubleClick()}>{props.todo.todo}</label>: 
+          <Update todo={props.todo.todo} fullTodo={props.todo} enter={onDoubleClick}/>
+         }
          <button className="destroy" onClick={()=> removeTodo(props.todo)}></button>
         </div>
         </li>   
