@@ -17,13 +17,14 @@ class AddTodo extends React.Component{
       e.preventDefault();
       this.props.dispatch(postTodo(this.state.todo))
       this.setState({todo:''})
+      e.target.reset()
     }
   };
   render(){
     return (
       <>
       <form onKeyDown={e => this.handleSubmit(e)} >
-        <input className="new-todo" onChange={this.handleChange} placeholder="What needs to be done?" autoFocus={true} />
+        <input className="new-todo" onChange={this.handleChange} value={this.state.todo}placeholder="What needs to be done?" autoFocus={true} />
       </form>
       </>
       )
