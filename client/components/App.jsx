@@ -12,7 +12,16 @@ class App extends React.Component {
     this.props.dispatch(getTodos())
   }
 
-  render () {
+  
+
+
+render () {
+
+  const hideFooter=()=>{
+    let checkForsTodos = this.props.todoList.length
+    return checkForsTodos = checkForsTodos == 0 ? false:true
+  }
+  
     return (
       <>
         <header className="header">
@@ -24,7 +33,7 @@ class App extends React.Component {
             <Route exact path='/:status' component={AllTodos}/>
         </section>
         <footer className="footer">
-          <Footer/>
+          {hideFooter()?<Footer/>: <>Welcome To My TODO App</>}
         </footer>
       </>
     )

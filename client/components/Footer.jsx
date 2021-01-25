@@ -7,8 +7,15 @@ import {deleteAllComplted} from '../actions'
 
 function Footer(props){
 
-  const getCompleted =()=>{
+  const getActive =()=>{
     return props.todoList.filter(todo=> todo.completed == 0).length
+  }
+  const getCompleted=()=>{
+    return props.todoList.filter(todo=> todo.completed == 1).length
+  }
+  const checkForCompleted=()=>{
+    let completed = props.todoList.filter(todo=> todo.completed == 1).length
+    return completed = completed == 0 ? false:true
   }
 
   const deleteCompleted = () =>{
@@ -16,10 +23,11 @@ function Footer(props){
     props.dispatch(deleteAllComplted(completed))
   }
 
+
     return(
         <>
          <footer className="footer">
-        <span className="todo-count"><strong>{getCompleted()}</strong> item left</span>
+        <span className="todo-count"><strong>{getActive()}</strong> item left</span>
         <ul className="filters">
           <li>
               <NavLink exact to='/' activeclassname='selected' >All</NavLink>
@@ -31,7 +39,10 @@ function Footer(props){
           <NavLink exact to='/completed'  activeclassname='selected' >Completed</NavLink>
           </li>
         </ul>
-        <button className="clear-completed"  onClick={()=> deleteCompleted()}activeclassname='selected' >Clear completed</button>
+        {checkForCompleted()?
+        <button className="clear-completed"  onClick={()=> deleteCompleted()}activeclassname='selected' >Clear completed({getCompleted()})</button>:
+        <span className="clear-completed">No todos complted</span>
+      }
       </footer>
         </>
     )
