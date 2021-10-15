@@ -1,12 +1,15 @@
 # TODO App
 
+This is a Full Stack todo app the utilises CRUD, 
+This app lets you create, update, read and delete and todo. It also lets to select between All, Completed, Not Completed
+This also allows you to delete all completed todos.
+
+## Run Demo
 ```
 npm install
-git checkout -b <branchname>
+npm run knex migrate:latest
 npm run dev
 ```
-
-See the breathtaking designs [here](http://localhost:3000/designs/)
 
 ## Notes
 
