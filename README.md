@@ -5,7 +5,7 @@ This is a Full Stack todo app the utilises CRUD,
 This app lets you create, update, read and delete and todo. It also lets to select between All, Completed, Not Completed
 This also allows you to delete all completed todos.
 
-Note: All Css design has already been provide by *Add link*
+Note: All Css design has already been provide by [todomvc](https://todomvc.com/)
 
 # Stretch
 * Add catagories / priorites to todos
